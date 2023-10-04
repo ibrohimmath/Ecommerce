@@ -1,0 +1,24 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" width="device-width, initial-scale=1.0">
+        <title>{% block title %}Base Page{% endblock %}</title>
+        <link rel="stylesheet" href="{% static 'css/styles.css' %}">    
+        <!-- <link rel="stylesheet" href="../static/css/styles.css"> -->
+    </head>
+    <body>
+        <div class="first indent">
+            <h3><a href="{% url 'shop:product_list' %}">My shop</a></h3>
+        </div>
+        <nav>
+            <p>{% if cart|length %}Your cart: <a href="{% url 'cart:cart_detail' %}" style="color: rgb(56, 121, 206);">{{ cart|length }} item{{ cart|length|pluralize }}, ${{ cart.get_total_price }}</a>{% else %}Your cart is empty{% endif %}</p>
+        </nav>
+        <div class="main">
+            {% block content %}
+            {% endblock %}
+        </div>
+    </body>
+</html>
+

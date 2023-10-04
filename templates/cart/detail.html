@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Your shopping cart{% endblock %}
+
+{% block content %}
+    <div class="cart-area">
+        <h1>Your shopping cart</h1>        
+        <div class="cart">
+            <table>
+                <thead class="selected">
+                    <tr>
+                        <th class="image-info">Image</th>
+                        <th class="product-info">Product</th>
+                        <th class="quantity-info">Quantity</th>
+                        <th class="remove-info">Remove</th>
+                        <th class="unit-price-info">Unit price</th>
+                        <th class="price-info">Price</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item in cart %}
+                        {% with product=item.product %}
+                            <tr>
+                                <td class="image-info"><img src="{% if product.image.url %}{{ product.image.url }}{% else %}{% static 'img/no-image.png' %}{% endif %}" alt=""></td>
+                                <td class="product-info">{{ product.name }}</td>
+                                <td class="quantity-info">
+                                    <form action="{% url 'cart:product_add' product.id %}" method="POST">
+                                        {% csrf_token %}
+                                        {{ item.form.quantity }}
+                                        {{ item.form.override }}
+                                        <input type="submit" class="submit-second selected" value="Update">
+                                    </form>
+                                </td>
+                                <td class="remove-info">
+                                    <form action="{% url 'cart:product_remove' product.id %}" method="POST">
+                                        {% csrf_token %}
+                                        <input type="submit" class="submit-second selected" value="Remove">
+                                    </form>
+                                </td>
+                                <td class="unit-price-info">${{ product.price }}</td>
+                                <td class="price-info">${{ item.total_price }}</td>
+                            </tr>
+                        {% endwith %}
+                    {% endfor %}
+                    <tr class="selected">
+                        <th class="image-info">Total</th>
+                        <th class="product-info"></th>
+                        <th class="quantity-info"></th>
+                        <th class="remove-info"></th>
+                        <th class="unit-price-info"></th>
+                        <th class="price-info">${{ cart.get_total_price }}</th>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}{% if category %}{{ category.name|capfirst }}{% else %}Products{% endif %}{% endblock %}
+
+{% block content %}
+    <div class="categories indent">
+        <h3>Categories</h3>
+        {% if not category %}
+            <p class="selected category-button"><a href="{% url 'shop:product_list' %}">All</a></p>
+        {% else %}
+            <p class="category-button"><a href="{% url 'shop:product_list' %}" style="color: rgb(56, 121, 206)">All</a></p>
+        {% endif %}
+        {% for cc in categories %}
+            {% if cc.slug == category.slug %}
+                <p class="selected category-button"><a href="{{ cc.get_absolute_url }}">{{ cc.name|capfirst }}</a></p>
+            {% else %}
+                <p class="category-button"><a href="{{ cc.get_absolute_url }}" style="color: rgb(56, 121, 206)">{{ cc.name|capfirst }}</a></p>
+            {% endif %}
+        {% endfor %}
+    </div>
+    <div class="products">
+        <h1>{% if category %}{{ category.name|capfirst }}{% else %}Products{% endif %}</h1>
+
+        {% for product in products %}
+            <div class="product">
+                <a href="{{ product.get_absolute_url }}"><img src="{% if product.image.url %}{{ product.image.url }}{% else %}../static/img/no-image.png{% endif %}" alt=""></a>
+                <a href="{{ product.get_absolute_url }}"><p class="product-name">{{ product.name|capfirst }}</p></a>
+                <p>${{ product.price }}</p>
+            </div>
+        {% endfor %}
+
+    </div>
+{% endblock %}
+
