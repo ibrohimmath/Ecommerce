@@ -54,5 +54,9 @@
                 </tbody>
             </table>
         </div>
+        <div class="tail">
+            <span class="btn distract"><a href="{% url 'shop:product_list' %}" style="color: black;">Continue shopping</a></span>
+            <span class="btn selected"><a href="{% url 'orders:order_create' %}" style="color: white;">Checkout</a></span>
+        </div>
     </div>
 {% endblock %}

@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}{% endblock %}
+
+{% block content %}
+    <div class="order-area">
+        <div class="order-form">
+            <form action="" method="POST">
+                {% csrf_token %}
+                <h1>Checkout</h1>
+                {{ form }}
+                <input type="submit" class="order-button selected" value="Place order" />
+            </form>
+        </div>
+        <div class="order-cart">
+            <h3 style="color: rgb(56, 121, 206); font-weight: 400;">Your order</h3>
+            <ul>
+                {% for item in cart %}
+                    <li>
+                        <div class="order-info">{{ item.quantity }}x {{ item.product.name }}</div>
+                        <div class="order-price">${{ item.price }}</div>
+                    </li>
+                {% endfor %}
+            </ul>
+            <div class="order-total">
+                Total:  ${{ cart.get_total_price }}
+            </div>
+        </div>
+    </div>
+{% endblock %}

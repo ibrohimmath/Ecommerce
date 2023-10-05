@@ -192,3 +192,93 @@ tbody tr{
     border-radius: 5px;
     font-size: 15px;
 }
+.tail{
+    margin-top: 20px;
+    display: flex;
+    justify-content: flex-end;
+    gap: 8px;
+}
+.btn{
+    padding: 10px;
+    border-radius: 3px;
+}
+.distract{
+    color: rgba(0, 0, 0, 0.608);
+    background-color: rgb(212, 212, 212);
+}
+.input-info{
+    width: 330px;
+    background-color: rgb(212, 212, 212);
+    margin-top: 5px;
+    margin-bottom: 15px;
+    height: 30px;
+    border: 0px;
+    padding-left: 15px;
+    font-size: 16px;
+}
+.order-area{
+    margin: 40px 150px;
+    width: 1700px;
+    display: flex;
+    justify-content: space-between; 
+}
+.order-form form{
+    display: flex;
+    flex-direction: column;
+}
+.order-form h1{
+    font-weight: 400;
+    margin-bottom: 40px;
+}
+.order-cart{
+    border-bottom: 4px solid rgb(56, 121, 206);
+    border-radius: 2px;
+    margin-top: 43px;
+    background-color: rgb(212, 212, 212);
+    height: fit-content;
+    width: 430px;
+    padding: 25px 25px;
+    font-size: 16px;
+}
+.order-cart ul{
+    margin: 20px 30px;
+}
+.order-info{
+    margin-left: 5px;
+    width: 245px;
+}
+.order-cart ul li{
+    margin-bottom: 4px;
+}
+li div{
+    display: inline-block;
+}
+.order-button{
+    width: 300px;
+    margin-top: 5px;
+    padding: 8px;
+    text-align: center;
+    border: 0px;
+    border-radius: 3px;
+    font-size: 15px;
+}
+.order-total{
+    padding-right: 55px;
+    display: flex;
+    justify-content: flex-end;
+    font-weight: 500;
+    font-size: 18px;
+}
+.success{
+    display: flex;
+    flex-direction: column;
+    margin: 40px 200px;
+}
+.success h1{
+    margin-bottom: 30px;
+    font-weight: 450;
+    color: green; 
+}
+.success h4{
+    font-weight: 400;
+}

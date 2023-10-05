@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}{% endblock %}
+{% block content %}
+    <div class="success">
+        <h1>Thank you</h1>
+        <h4>Your order has been successfully completed. Your order number is {{ order.id }}</h4>
+    </div>
+{% endblock %}
