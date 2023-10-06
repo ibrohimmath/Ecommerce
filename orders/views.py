@@ -7,6 +7,8 @@ from .forms import OrderForm
 
 from cart.cart import Cart
 
+from .tasks import order_created
+
 def orderCreateView(request):
     cart = Cart(request)
     form = OrderForm()
@@ -21,6 +23,8 @@ def orderCreateView(request):
                     quantity = item['quantity'],
                     price = item['price'],
                 )
+            # launch asynchronous task
+            order_created.delay(order.id)
             cart.clear()
             return render(request, 'orders/created.html', {'order': order,})
     return render(request, 'orders/create.html', {
